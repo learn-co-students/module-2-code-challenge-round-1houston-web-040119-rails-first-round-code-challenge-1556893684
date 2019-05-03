@@ -1,0 +1,17 @@
+<%= form_for @heroine do |h|%>
+<%= h.label "Name" %>
+<%= h.text_field :name %>
+<br>
+<%= h.label "Super Name"%>
+<%= h.text_field :super_name%>
+<br>
+<%= h.collection_select :power_id, @powers, :id, :name%>
+<br>
+<% if flash[:error]%>
+<% flash[:error].each do |e|%>
+<%= "#{e}"%>
+<% end %>
+<% end %>
+<br>
+<%= h.button :submit%>
+<% end %>
