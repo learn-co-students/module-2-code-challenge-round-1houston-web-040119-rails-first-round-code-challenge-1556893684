@@ -1,6 +1,10 @@
 class HeroinesController < ApplicationController
   def index
     @heroines = Heroine.all
+    @result = params[:q]
+    if @result 
+      @searched_heroines = @heroines.select {|h| h.power.name.include? @result}
+    end
   end
 
   def show 
@@ -23,13 +27,7 @@ class HeroinesController < ApplicationController
       redirect_to new_heroine_path
     end
   end
-
-  def search 
-    @heroines = Heroine.all
-    result = params[:q]
-    @searched_heroines = @heroines.select {|h| h.power.name.include? result}
-  end
-
+  
   def heroine_params
     params.require(:heroine).permit(:name, :super_name, :power_id)
   end
