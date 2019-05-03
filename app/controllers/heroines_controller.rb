@@ -22,8 +22,12 @@ class HeroinesController < ApplicationController
       flash[:error] = @heroine.errors.full_messages
       redirect_to new_heroine_path
     end
+  end
 
-
+  def search 
+    @heroines = Heroine.all
+    result = params[:q]
+    @searched_heroines = @heroines.select {|h| h.power.name.include? result}
   end
 
   def heroine_params
