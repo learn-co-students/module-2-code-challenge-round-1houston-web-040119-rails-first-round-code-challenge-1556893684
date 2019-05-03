@@ -1,5 +1,12 @@
 <h2>All Heroines</h2>
 
+<%= form_tag(heroines_path, method: :get) do %>
+  Search by power(case sensitive): <%= text_field_tag(:search, params[:search]) %>
+  <%= submit_tag 'Search', name: nil %>
+<% end %>
+
+
+
 
 
 <ul>
