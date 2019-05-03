@@ -1,9 +1,9 @@
 <h2>All Heroines</h2>
 
-<%= form_for '/search', method: :get do |f| %>
-<%= f.label :q, 'Search Power Here' %>
-<%= f.text_field :q %>
-<%= f.submit 'Search' %>
+<%= form_tag heroines_path, method: :get do %>
+<%= label_tag :power_name, 'Search Power Here' %>
+<%= text_field_tag :power_name %>
+<%= submit_tag 'Search' %>
 <% end %>
 
 <ul>

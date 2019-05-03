@@ -1,10 +1,10 @@
 class HeroinesController < ApplicationController
   before_action :current_heroine, except: [:index, :new, :create]
 
-  def index
-    @heroines = Heroine.all
-    
+  def index  
+    @heroines = Heroine.search_by_power(params[:power_name])
   end
+
   def show
   end
 
