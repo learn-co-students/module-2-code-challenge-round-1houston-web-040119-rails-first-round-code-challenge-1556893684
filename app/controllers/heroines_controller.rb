@@ -41,6 +41,10 @@ class HeroinesController < ApplicationController
     redirect_to heroines_path
   end
 
+  def search_index
+
+  end
+
   private
 
   def current_heroine
