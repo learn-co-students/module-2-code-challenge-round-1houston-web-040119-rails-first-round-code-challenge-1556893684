@@ -48,12 +48,14 @@ class HeroinesController < ApplicationController
   end
 
   def search
-    if power_id != nil
-      @heroines = Heroine.find_by(power_id:power_id)
-      redirect_to heroines_path
+    @powers = Power.all
+    if power_selection != nil
+      @heroines = Heroine.select{|heroine| heroine.power_id == power_selection.id}
+      render :index
     else
+      flash[:error] = "That power does not exist!"
       @heroines = Heroine.all
-      redirect_to heroines_path
+      render :index
     end
   end
 
@@ -67,11 +69,13 @@ class HeroinesController < ApplicationController
     Heroine.find(params[:id])
   end
 
-  # def power_selection
-  #   byebug
-  #   power_name = params.require(:heroine).permit(:power)
-  #   power_id = Power.find_by(name:power_name)
-  #   byebug
-  # end
+  def power_selection
+    if params[:power] == ""
+      nil
+    else
+      power_name = params.require(:power)
+      Power.find_by(name:power_name)
+    end
+  end
 
 end
